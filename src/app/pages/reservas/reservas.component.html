@@ -1,0 +1,88 @@
+<div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-brand-light">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Reservar un Turno</h2>
+      <p class="mt-4 text-xl text-brand-light/80">Sigue los pasos para asegurar tu lugar.</p>
+    </div>
+
+    <!-- Contenedor de Pasos -->
+    <div [ngSwitch]="pasoActual" class="bg-brand-grey p-8 rounded-lg shadow-2xl">
+
+      <!-- Paso 1: Seleccionar Barbero -->
+      <div *ngSwitchCase="1">
+        <h3 class="text-2xl font-bold text-brand-gold mb-6">Paso 1: Elige tu Barbero</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div *ngFor="let barbero of barberos" (click)="seleccionarBarbero(barbero)" class="bg-brand-charcoal p-4 rounded-lg text-center cursor-pointer hover:bg-brand-gold/20 hover:border-brand-gold border-2 border-transparent transition-all">
+            <p class="text-xl font-semibold">{{ barbero.nombre }}</p>
+            <p class="text-sm text-brand-light/70">{{ barbero.especialidad }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 2: Seleccionar Servicios -->
+      <div *ngSwitchCase="2">
+        <h3 class="text-2xl font-bold text-brand-gold mb-2">Paso 2: Elige los Servicios</h3>
+        <p class="text-brand-light/80 mb-6">Para: <span class="font-semibold text-brand-gold">{{ barberoSeleccionado?.nombre }}</span></p>
+        <div class="space-y-4">
+          <div *ngFor="let servicio of servicios" (click)="toggleServicio(servicio)" [ngClass]="{'bg-brand-gold/30 border-brand-gold': serviciosSeleccionados.includes(servicio), 'bg-brand-charcoal': !serviciosSeleccionados.includes(servicio)}" class="p-4 rounded-lg cursor-pointer border-2 border-transparent flex justify-between items-center">
+            <div>
+              <p class="font-semibold">{{ servicio.nombre }}</p>
+              <p class="text-sm text-brand-light/70">{{ servicio.descripcion }} ({{ servicio.duracion }} min)</p>
+            </div>
+            <span class="text-lg font-bold text-brand-gold">{{ servicio.precio }}</span>
+          </div>
+        </div>
+        <div class="mt-6 text-right font-bold text-xl">Duración Total: {{ duracionTotal }} min</div>
+        <div class="flex justify-between mt-8">
+          <button (click)="pasoAnterior()" class="btn-secondary">Anterior</button>
+          <button (click)="siguientePaso()" [disabled]="serviciosSeleccionados.length === 0" class="btn-primary">Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Seleccionar Fecha y Hora -->
+      <div *ngSwitchCase="3">
+        <h3 class="text-2xl font-bold text-brand-gold mb-6">Paso 3: Elige Fecha y Hora</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <label for="fecha" class="block text-sm font-medium text-brand-light/90 mb-2">Selecciona una fecha</label>
+            <input type="date" id="fecha" [value]="fechaSeleccionada" (change)="onDateChange($event)" class="input-style w-full">
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-2">Horarios Disponibles</h4>
+            <div *ngIf="horariosDisponibles.length > 0; else noHorarios" class="grid grid-cols-3 gap-2">
+              <button *ngFor="let hora of horariosDisponibles" (click)="seleccionarHora(hora)" [ngClass]="{'!bg-brand-gold !text-brand-charcoal': hora === horaSeleccionada}" class="btn-outline">{{ hora | date:'HH:mm' }}</button>
+            </div>
+            <ng-template #noHorarios><p class="text-brand-light/60">Selecciona una fecha para ver los horarios.</p></ng-template>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button (click)="pasoAnterior()" class="btn-secondary">Anterior</button>
+          <button (click)="siguientePaso()" [disabled]="!horaSeleccionada" class="btn-primary">Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 4: Confirmación -->
+      <div *ngSwitchCase="4">
+        <h3 class="text-2xl font-bold text-brand-gold mb-6">Paso 4: Confirma tu Reserva</h3>
+        <div class="bg-brand-charcoal p-6 rounded-lg space-y-4">
+          <p><strong>Barbero:</strong> {{ barberoSeleccionado?.nombre }}</p>
+          <p><strong>Servicios:</strong></p>
+          <ul class="list-disc list-inside pl-4">
+            <li *ngFor="let s of serviciosSeleccionados">{{ s.nombre }} ({{ s.duracion }} min)</li>
+          </ul>
+          <p><strong>Fecha y Hora:</strong> {{ horaSeleccionada | date:'fullDate' }} a las {{ horaSeleccionada | date:'HH:mm' }}</p>
+          <p><strong>Duración Total:</strong> {{ duracionTotal }} min</p>
+        </div>
+        <form [formGroup]="reservaForm" (ngSubmit)="confirmarReserva()" class="mt-6">
+          <label for="nombreCliente" class="block text-sm font-medium text-brand-light/90">Tu Nombre Completo</label>
+          <input type="text" id="nombreCliente" formControlName="nombreCliente" class="input-style w-full mt-1">
+          <div class="flex justify-between mt-8">
+            <button type="button" (click)="pasoAnterior()" class="btn-secondary">Anterior</button>
+            <button type="submit" [disabled]="reservaForm.invalid" class="btn-primary">Confirmar Reserva</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

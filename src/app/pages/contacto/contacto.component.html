@@ -1,0 +1,54 @@
+<div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-brand-light">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center">
+      <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Ponte en Contacto</h2>
+      <p class="mt-4 max-w-3xl mx-auto text-xl text-brand-light/80">
+        ¿Tienes alguna pregunta? Envíanos un mensaje o visítanos.
+      </p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 gap-12">
+      <!-- Contact Information -->
+      <div class="bg-brand-grey p-8 rounded-lg shadow-lg">
+        <h3 class="text-3xl font-serif-display text-brand-gold mb-6">Información de Contacto</h3>
+        <div class="space-y-4 text-lg">
+          <p class="flex items-start">
+            <span class="text-brand-gold mr-3 mt-1">📍</span>
+            <span>Calle Falsa 123, Springfield, USA</span>
+          </p>
+          <p class="flex items-start">
+            <span class="text-brand-gold mr-3 mt-1">📞</span>
+            <span>(555) 123-4567</span>
+          </p>
+          <p class="flex items-start">
+            <span class="text-brand-gold mr-3 mt-1">✉️</span>
+            <span>contacto&#64;barberiaroyal.com</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-brand-grey p-8 rounded-lg shadow-lg">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="grid grid-cols-1 gap-y-6">
+            <div>
+              <label for="name" class="sr-only">Nombre</label>
+              <input type="text" formControlName="name" id="name" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Nombre Completo">
+            </div>
+            <div>
+              <label for="email" class="sr-only">Email</label>
+              <input id="email" formControlName="email" type="email" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Correo Electrónico">
+            </div>
+            <div>
+              <label for="message" class="sr-only">Mensaje</label>
+              <textarea id="message" formControlName="message" rows="4" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Tu Mensaje"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-brand-charcoal bg-brand-gold hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold transition-colors duration-300">Enviar Mensaje</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

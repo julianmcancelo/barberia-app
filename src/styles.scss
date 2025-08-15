@@ -1,0 +1,56 @@
+// Custom Theming for Angular Material
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Lato:wght@300;400&display=swap');
+
+// Include the common styles for Angular Material.
+@include mat.core();
+
+// Define a custom theme palette
+$barberia-primary: mat.define-palette(mat.$grey-palette, 900, 800, 900);
+$barberia-accent: mat.define-palette(mat.$amber-palette, A400, A200, A700);
+$barberia-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$barberia-theme: mat.define-dark-theme((
+  color: (
+    primary: $barberia-primary,
+    accent: $barberia-accent,
+    warn: $barberia-warn,
+  )
+));
+
+// Apply the custom theme
+@include mat.all-component-themes($barberia-theme);
+
+// Tailwind Directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-gold text-brand-charcoal font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-amber-500 transform hover:scale-105 transition-all duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100;
+  }
+  .btn-secondary {
+    @apply bg-brand-grey text-brand-light font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-gray-700 transform hover:scale-105 transition-all duration-300;
+  }
+  .btn-outline {
+    @apply bg-transparent border border-brand-gold text-brand-gold font-semibold py-2 px-4 rounded-lg hover:bg-brand-gold hover:text-brand-charcoal transition-colors duration-300 disabled:bg-transparent disabled:border-gray-600 disabled:text-gray-600;
+  }
+  .input-style {
+    @apply mt-1 block w-full bg-brand-charcoal border-transparent rounded-md shadow-sm py-2 px-3 text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent sm:text-sm;
+  }
+}
+
+// Base body styles
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', 'sans-serif';
+  background-color: #222831; // brand-charcoal
+}
+                        

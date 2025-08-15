@@ -1,0 +1,65 @@
+<div class="bg-brand-charcoal text-brand-light font-sans-body min-h-screen flex flex-col">
+  <!-- Header -->
+  <mat-toolbar class="!bg-brand-charcoal flex justify-between items-center shadow-lg border-b-2 border-brand-gold/50">
+    <div class="text-3xl font-serif-display text-brand-light tracking-wider">
+      <a routerLink="/">Barbería Royal</a>
+    </div>
+    <div class="hidden md:flex items-center space-x-2">
+      <a mat-button routerLink="/servicios" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Servicios</a>
+      <a mat-button routerLink="/nosotros" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Nosotros</a>
+      <a mat-button routerLink="/contacto" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Contacto</a>
+      <a mat-stroked-button routerLink="/login" class="!border-brand-gold !text-brand-gold hover:!bg-brand-gold hover:!text-brand-charcoal transition-colors duration-300">
+        Iniciar Sesión
+      </a>
+    </div>
+    <button mat-icon-button class="md:hidden !text-brand-light">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Page Content -->
+  <main class="flex-grow relative">
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet" />
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-grey text-brand-light/80 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Barbería Info -->
+        <div class="space-y-4">
+          <h3 class="font-serif-display text-2xl text-brand-gold">Barbería Royal</h3>
+          <p class="text-sm text-brand-light/70">El arte del cuidado masculino, donde la tradición se encuentra con el estilo moderno.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Facebook</a>
+            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Instagram</a>
+            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Twitter</a>
+          </div>
+        </div>
+
+        <!-- Project Credits -->
+        <div class="space-y-2">
+          <h4 class="font-semibold text-brand-light">Proyecto Académico</h4>
+          <p class="text-sm font-serif-display text-brand-gold">Julián Manuel Cancelo</p>
+          <p class="text-xs text-brand-light/70">Alumno: Analista de Sistemas</p>
+          <p class="text-xs text-brand-light/70">Instituto Tecnológico Beltrán, Avellaneda</p>
+        </div>
+
+        <!-- Project Details -->
+        <div class="space-y-2">
+          <h4 class="font-semibold text-brand-light">Detalles del Proyecto</h4>
+          <p class="text-sm text-brand-light/70">Proyecto Final: Algoritmos y Estructura de Datos III</p>
+          <p class="text-xs text-brand-light/70">Profesor: Sebastián Saldivar</p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="mt-8 pt-8 border-t border-brand-charcoal/50 text-center text-xs text-brand-light/50">
+        <p>&copy; 2024 Barbería Royal. Todos los derechos reservados. | <a routerLink="/admin" class="hover:text-brand-gold transition-colors">Panel de Administración</a></p>
+      </div>
+    </div>
+  </footer>
+</div>
+

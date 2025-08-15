@@ -1,0 +1,42 @@
+<div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-brand-light">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Panel de Administración</h2>
+      <p class="mt-4 text-xl text-brand-light/80">Todas las reservas agendadas.</p>
+    </div>
+
+    <div *ngIf="reservas.length > 0; else noReservas" class="bg-brand-grey shadow-2xl rounded-lg overflow-hidden">
+      <table class="min-w-full">
+        <thead class="bg-brand-charcoal/50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-brand-gold sm:pl-6">Cliente</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Barbero</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Servicios</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Fecha y Hora</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Duración</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-brand-charcoal/50">
+          <tr *ngFor="let reserva of reservas">
+            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-brand-light sm:pl-6">{{ reserva.nombreCliente }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.barbero.nombre }}</td>
+            <td class="px-3 py-4 text-sm text-brand-light/90">
+              <ul class="list-disc list-inside">
+                <li *ngFor="let servicio of reserva.servicios">{{ servicio.nombre }}</li>
+              </ul>
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.fecha | date:'EEEE, d MMMM, y, HH:mm' }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.duracionTotal }} min</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noReservas>
+      <div class="text-center bg-brand-grey p-12 rounded-lg shadow-2xl">
+        <h3 class="text-2xl font-bold text-brand-gold">No hay reservas todavía</h3>
+        <p class="mt-2 text-brand-light/70">Cuando se agende un turno, aparecerá aquí.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
