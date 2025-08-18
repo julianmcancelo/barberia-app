@@ -1,0 +1,176 @@
+<div class="bg-brand-charcoal min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-serif-display text-brand-gold">Gestión de Tatuadores</h1>
+      <button 
+        (click)="showAddForm()" 
+        class="btn-primary px-6 py-3 uppercase tracking-wider">
+        Agregar Tatuador
+      </button>
+    </div>
+
+    <!-- Add/Edit Form -->
+    <div *ngIf="showForm" class="bg-brand-grey p-6 rounded-lg mb-8 border border-brand-gold/20">
+      <h2 class="text-xl font-semibold text-brand-gold mb-6">
+        {{ editingId ? 'Editar Tatuador' : 'Agregar Nuevo Tatuador' }}
+      </h2>
+      
+      <form [formGroup]="tatuadorForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-brand-light/90 mb-2">Nombre *</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            formControlName="nombre"
+            class="input-style w-full"
+            placeholder="Nombre completo del tatuador">
+          <div *ngIf="tatuadorForm.get('nombre')?.invalid && tatuadorForm.get('nombre')?.touched" 
+               class="text-red-400 text-sm mt-1">
+            El nombre es requerido (mínimo 2 caracteres)
+          </div>
+        </div>
+
+        <div>
+          <label for="especialidad" class="block text-sm font-medium text-brand-light/90 mb-2">Especialidad *</label>
+          <input 
+            type="text" 
+            id="especialidad" 
+            formControlName="especialidad"
+            class="input-style w-full"
+            placeholder="Ej: Tradicional, Realismo, Black & Grey">
+          <div *ngIf="tatuadorForm.get('especialidad')?.invalid && tatuadorForm.get('especialidad')?.touched" 
+               class="text-red-400 text-sm mt-1">
+            La especialidad es requerida
+          </div>
+        </div>
+
+        <div>
+          <label for="telefono" class="block text-sm font-medium text-brand-light/90 mb-2">Teléfono</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            formControlName="telefono"
+            class="input-style w-full"
+            placeholder="+54 11 1234-5678">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-brand-light/90 mb-2">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            class="input-style w-full"
+            placeholder="tatuador@ejemplo.com">
+          <div *ngIf="tatuadorForm.get('email')?.invalid && tatuadorForm.get('email')?.touched" 
+               class="text-red-400 text-sm mt-1">
+            Ingresa un email válido
+          </div>
+        </div>
+
+        <div>
+          <label for="instagram" class="block text-sm font-medium text-brand-light/90 mb-2">Instagram</label>
+          <input 
+            type="text" 
+            id="instagram" 
+            formControlName="instagram"
+            class="input-style w-full"
+            placeholder="@usuario_instagram">
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="descripcion" class="block text-sm font-medium text-brand-light/90 mb-2">Descripción</label>
+          <textarea 
+            id="descripcion" 
+            formControlName="descripcion"
+            rows="3"
+            class="input-style w-full"
+            placeholder="Descripción del tatuador, experiencia, estilo, etc.">
+          </textarea>
+        </div>
+
+        <div class="md:col-span-2 flex gap-4">
+          <button 
+            type="submit" 
+            [disabled]="tatuadorForm.invalid"
+            class="btn-primary px-6 py-3 uppercase tracking-wider">
+            {{ editingId ? 'Actualizar' : 'Agregar' }}
+          </button>
+          <button 
+            type="button" 
+            (click)="cancelForm()"
+            class="btn-secondary px-6 py-3 uppercase tracking-wider">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-12">
+      <div class="text-brand-gold text-lg">Cargando tatuadores...</div>
+    </div>
+
+    <!-- Tatuadores List -->
+    <div *ngIf="!loading && tatuadores.length > 0" class="bg-brand-grey shadow-2xl rounded-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead class="bg-brand-charcoal/50">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-brand-gold sm:pl-6">Nombre</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Especialidad</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Contacto</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Descripción</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-charcoal/50">
+            <tr *ngFor="let tatuador of tatuadores" class="hover:bg-brand-charcoal/30 transition-colors">
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-brand-light sm:pl-6">
+                {{ tatuador.nombre }}
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/80">
+                {{ tatuador.especialidad }}
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/80">
+                <div *ngIf="tatuador.telefono" class="mb-1">📞 {{ tatuador.telefono }}</div>
+                <div *ngIf="tatuador.email" class="mb-1">✉️ {{ tatuador.email }}</div>
+                <div *ngIf="tatuador.instagram">📷 {{ tatuador.instagram }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/80 max-w-xs">
+                <div class="truncate" [title]="tatuador.descripcion">
+                  {{ tatuador.descripcion || 'Sin descripción' }}
+                </div>
+              </td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm">
+                <div class="flex gap-2">
+                  <button 
+                    (click)="editTatuador(tatuador)"
+                    class="text-brand-gold hover:text-brand-light transition-colors px-3 py-1 border border-brand-gold rounded text-xs uppercase tracking-wider">
+                    Editar
+                  </button>
+                  <button 
+                    (click)="deleteTatuador(tatuador.id!)"
+                    class="text-red-400 hover:text-red-300 transition-colors px-3 py-1 border border-red-400 rounded text-xs uppercase tracking-wider">
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && tatuadores.length === 0" class="text-center py-12">
+      <div class="text-brand-light/60 text-lg mb-4">No hay tatuadores registrados</div>
+      <button 
+        (click)="showAddForm()" 
+        class="btn-primary px-6 py-3 uppercase tracking-wider">
+        Agregar Primer Tatuador
+      </button>
+    </div>
+  </div>
+</div>

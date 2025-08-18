@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "nombre": "Tatuaje Pequeño",
+      "descripcion": "Tatuajes de hasta 5cm. Ideal para primeros tatuajes o diseños minimalistas.",
+      "duracion": 60,
+      "precio": "8000.00"
+    },
+    {
+      "id": 2,
+      "nombre": "Tatuaje Mediano",
+      "descripcion": "Tatuajes de 5-15cm. Perfecto para diseños con detalle moderado.",
+      "duracion": 120,
+      "precio": "15000.00"
+    },
+    {
+      "id": 3,
+      "nombre": "Tatuaje Grande",
+      "descripcion": "Tatuajes de 15-25cm. Para diseños complejos y detallados.",
+      "duracion": 180,
+      "precio": "25000.00"
+    },
+    {
+      "id": 4,
+      "nombre": "Sesión Completa",
+      "descripcion": "Sesión de 4-6 horas para tatuajes grandes o múltiples piezas.",
+      "duracion": 300,
+      "precio": "40000.00"
+    },
+    {
+      "id": 5,
+      "nombre": "Retoque",
+      "descripcion": "Retoque de tatuajes existentes. Incluye pequeñas correcciones.",
+      "duracion": 45,
+      "precio": "5000.00"
+    },
+    {
+      "id": 6,
+      "nombre": "Consulta y Diseño",
+      "descripcion": "Consulta personalizada y diseño custom. No incluye tatuaje.",
+      "duracion": 30,
+      "precio": "3000.00"
+    }
+  ]
+}

@@ -2,40 +2,158 @@
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12">
       <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Panel de Administración</h2>
-      <p class="mt-4 text-xl text-brand-light/80">Todas las reservas agendadas.</p>
+      <p class="mt-4 text-xl text-brand-light/80">Gestión completa de reservas y cupones.</p>
+      
+      <!-- Navigation Links -->
+      <div class="mt-8 flex justify-center space-x-4">
+        <a routerLink="/admin" class="bg-brand-gold text-brand-charcoal px-6 py-3 rounded-lg font-semibold hover:bg-brand-gold/90 transition-colors">
+          📅 Reservas
+        </a>
+        <a routerLink="/admin/tatuadores" class="bg-brand-charcoal text-brand-light px-6 py-3 rounded-lg font-semibold border border-brand-gold/20 hover:bg-brand-gold/10 transition-colors">
+          👨‍🎨 Tatuadores
+        </a>
+        <a routerLink="/admin/cupones" class="bg-brand-charcoal text-brand-light px-6 py-3 rounded-lg font-semibold border border-brand-gold/20 hover:bg-brand-gold/10 transition-colors">
+          🎫 Cupones
+        </a>
+      </div>
     </div>
 
-    <div *ngIf="reservas.length > 0; else noReservas" class="bg-brand-grey shadow-2xl rounded-lg overflow-hidden">
-      <table class="min-w-full">
-        <thead class="bg-brand-charcoal/50">
-          <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-brand-gold sm:pl-6">Cliente</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Barbero</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Servicios</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Fecha y Hora</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Duración</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-brand-charcoal/50">
-          <tr *ngFor="let reserva of reservas">
-            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-brand-light sm:pl-6">{{ reserva.nombreCliente }}</td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.barbero.nombre }}</td>
-            <td class="px-3 py-4 text-sm text-brand-light/90">
-              <ul class="list-disc list-inside">
-                <li *ngFor="let servicio of reserva.servicios">{{ servicio.nombre }}</li>
-              </ul>
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.fecha | date:'EEEE, d MMMM, y, HH:mm' }}</td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-brand-light/90">{{ reserva.duracionTotal }} min</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Filtros -->
+    <div class="mb-6 flex flex-wrap gap-4 items-center justify-between">
+      <div class="flex gap-2">
+        <button 
+          (click)="filtroEstado = 'todas'; aplicarFiltro()"
+          [class]="filtroEstado === 'todas' ? 'bg-brand-gold text-brand-charcoal' : 'bg-brand-grey text-brand-light'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors">
+          Todas ({{ reservas.length }})
+        </button>
+        <button 
+          (click)="filtroEstado = 'pendiente'; aplicarFiltro()"
+          [class]="filtroEstado === 'pendiente' ? 'bg-yellow-500 text-black' : 'bg-brand-grey text-brand-light'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors">
+          Pendientes
+        </button>
+        <button 
+          (click)="filtroEstado = 'confirmada'; aplicarFiltro()"
+          [class]="filtroEstado === 'confirmada' ? 'bg-green-500 text-white' : 'bg-brand-grey text-brand-light'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors">
+          Confirmadas
+        </button>
+        <button 
+          (click)="filtroEstado = 'completada'; aplicarFiltro()"
+          [class]="filtroEstado === 'completada' ? 'bg-blue-500 text-white' : 'bg-brand-grey text-brand-light'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors">
+          Completadas
+        </button>
+        <button 
+          (click)="filtroEstado = 'cancelada'; aplicarFiltro()"
+          [class]="filtroEstado === 'cancelada' ? 'bg-red-500 text-white' : 'bg-brand-grey text-brand-light'"
+          class="px-4 py-2 rounded-lg font-medium transition-colors">
+          Canceladas
+        </button>
+      </div>
+      <button 
+        (click)="cargarReservas()"
+        class="bg-brand-gold text-brand-charcoal px-4 py-2 rounded-lg font-medium hover:bg-brand-gold/90 transition-colors">
+        🔄 Actualizar
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-12">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-brand-gold"></div>
+      <p class="mt-2 text-brand-light/70">Cargando reservas...</p>
+    </div>
+
+    <!-- Tabla de reservas -->
+    <div *ngIf="!loading && reservasFiltradas.length > 0; else noReservas" class="bg-brand-grey shadow-2xl rounded-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead class="bg-brand-charcoal/50">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-brand-gold sm:pl-6">Token</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Cliente</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Contacto</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Artista</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Servicios</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Fecha y Hora</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Duración</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Precio</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Estado</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-brand-gold">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-charcoal/50">
+            <tr *ngFor="let reserva of reservasFiltradas" class="hover:bg-brand-charcoal/30 transition-colors">
+              <td class="py-4 pl-4 pr-3 text-xs font-mono text-brand-gold sm:pl-6">
+                {{ reserva.token_reserva }}
+              </td>
+              <td class="px-3 py-4 text-sm">
+                <div class="font-medium text-brand-light">{{ reserva.nombre_completo }}</div>
+                <div class="text-brand-light/60 text-xs">{{ reserva.email }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/90">
+                <div *ngIf="reserva.whatsapp" class="text-xs">📱 {{ reserva.whatsapp }}</div>
+                <div class="text-xs">✉️ {{ reserva.email }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm">
+                <div class="font-medium text-brand-light">{{ reserva.tatuador_nombre }}</div>
+                <div class="text-brand-light/60 text-xs">{{ reserva.tatuador_especialidad }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/90 max-w-xs">
+                <div class="truncate">{{ reserva.servicios_nombres }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/90">
+                <div class="font-medium">{{ reserva.fecha_hora | date:'d/MM/yyyy' }}</div>
+                <div class="text-xs text-brand-light/60">{{ reserva.fecha_hora | date:'h:mm a' }}</div>
+              </td>
+              <td class="px-3 py-4 text-sm text-brand-light/90">
+                {{ reserva.duracion_total | duration }}
+              </td>
+              <td class="px-3 py-4 text-sm font-medium text-brand-gold">
+                ${{ reserva.precio_total | number:'1.0-0' }}
+              </td>
+              <td class="px-3 py-4 text-sm">
+                <span [class]="getEstadoClass(reserva.estado)" class="px-2 py-1 rounded-full text-xs font-medium">
+                  {{ reserva.estado | titlecase }}
+                </span>
+              </td>
+              <td class="px-3 py-4 text-sm">
+                <div class="flex flex-col gap-1">
+                  <button 
+                    *ngIf="reserva.estado === 'pendiente'"
+                    (click)="cambiarEstado(reserva, 'confirmada')"
+                    class="bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-600 transition-colors">
+                    ✓ Confirmar
+                  </button>
+                  <button 
+                    *ngIf="reserva.estado === 'confirmada'"
+                    (click)="cambiarEstado(reserva, 'completada')"
+                    class="bg-blue-500 text-white px-2 py-1 rounded text-xs hover:bg-blue-600 transition-colors">
+                    ✓ Completar
+                  </button>
+                  <button 
+                    *ngIf="reserva.estado !== 'cancelada' && reserva.estado !== 'completada'"
+                    (click)="cambiarEstado(reserva, 'cancelada')"
+                    class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600 transition-colors">
+                    ✗ Cancelar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <ng-template #noReservas>
-      <div class="text-center bg-brand-grey p-12 rounded-lg shadow-2xl">
-        <h3 class="text-2xl font-bold text-brand-gold">No hay reservas todavía</h3>
-        <p class="mt-2 text-brand-light/70">Cuando se agende un turno, aparecerá aquí.</p>
+      <div *ngIf="!loading" class="text-center bg-brand-grey p-12 rounded-lg shadow-2xl">
+        <h3 class="text-2xl font-bold text-brand-gold">
+          {{ filtroEstado === 'todas' ? 'No hay reservas todavía' : 'No hay reservas ' + filtroEstado + 's' }}
+        </h3>
+        <p class="mt-2 text-brand-light/70">
+          {{ filtroEstado === 'todas' ? 'Cuando se agende un turno, aparecerá aquí.' : 'Cambia el filtro para ver otras reservas.' }}
+        </p>
       </div>
     </ng-template>
   </div>

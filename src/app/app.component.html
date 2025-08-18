@@ -1,21 +1,49 @@
 <div class="bg-brand-charcoal text-brand-light font-sans-body min-h-screen flex flex-col">
   <!-- Header -->
-  <mat-toolbar class="!bg-brand-charcoal flex justify-between items-center shadow-lg border-b-2 border-brand-gold/50">
-    <div class="text-3xl font-serif-display text-brand-light tracking-wider">
-      <a routerLink="/">Barbería Royal</a>
+  <header class="bg-brand-charcoal border-b border-brand-gold/20 py-4 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <div class="text-2xl md:text-3xl font-serif-display text-brand-light tracking-[0.15em]">
+        <a routerLink="/" class="hover:text-brand-gold transition-colors duration-300">EQUINOCCIO TATUAJES</a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-12">
+        <a routerLink="/servicios" class="text-brand-light hover:text-brand-gold transition-colors duration-300 uppercase tracking-[0.15em] text-sm font-light">Tattoo</a>
+        <a routerLink="/servicios" class="text-brand-light hover:text-brand-gold transition-colors duration-300 uppercase tracking-[0.15em] text-sm font-light">Piercing</a>
+        <a routerLink="/tatuadores" class="text-brand-light hover:text-brand-gold transition-colors duration-300 uppercase tracking-[0.15em] text-sm font-light">Artistas</a>
+        <a routerLink="/nosotros" class="text-brand-light hover:text-brand-gold transition-colors duration-300 uppercase tracking-[0.15em] text-sm font-light">Nosotros</a>
+        <a routerLink="/contacto" class="text-brand-light hover:text-brand-gold transition-colors duration-300 uppercase tracking-[0.15em] text-sm font-light">FAQ's</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a routerLink="/reservas" class="bg-brand-gold text-brand-charcoal px-8 py-3 uppercase tracking-[0.15em] text-sm font-semibold hover:bg-brand-light transition-colors duration-300">
+          Reservar
+        </a>
+        
+        <!-- Admin Access -->
+        <ng-container *ngIf="!(isLoggedIn$ | async); else logoutButton">
+          <button (click)="login()" class="text-brand-light/60 hover:text-brand-gold transition-colors duration-300 text-xs uppercase tracking-wider">
+            Admin
+          </button>
+        </ng-container>
+
+        <ng-template #logoutButton>
+          <button (click)="logout()" class="text-brand-light/60 hover:text-brand-gold transition-colors duration-300 text-xs uppercase tracking-wider">
+            Logout
+          </button>
+        </ng-template>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-brand-light hover:text-brand-gold transition-colors duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
-    <div class="hidden md:flex items-center space-x-2">
-      <a mat-button routerLink="/servicios" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Servicios</a>
-      <a mat-button routerLink="/nosotros" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Nosotros</a>
-      <a mat-button routerLink="/contacto" class="!text-brand-light hover:!bg-brand-grey transition-colors duration-300">Contacto</a>
-      <a mat-stroked-button routerLink="/login" class="!border-brand-gold !text-brand-gold hover:!bg-brand-gold hover:!text-brand-charcoal transition-colors duration-300">
-        Iniciar Sesión
-      </a>
-    </div>
-    <button mat-icon-button class="md:hidden !text-brand-light">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </mat-toolbar>
+  </header>
 
   <!-- Page Content -->
   <main class="flex-grow relative">
@@ -28,14 +56,15 @@
   <footer class="bg-brand-grey text-brand-light/80 py-12 px-4 sm:px-6 lg:px-8 mt-auto">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Barbería Info -->
+        <!-- Studio Info -->
         <div class="space-y-4">
-          <h3 class="font-serif-display text-2xl text-brand-gold">Barbería Royal</h3>
-          <p class="text-sm text-brand-light/70">El arte del cuidado masculino, donde la tradición se encuentra con el estilo moderno.</p>
+          <h3 class="font-serif-display text-2xl text-brand-gold">EQUINOCCIO TATUAJES</h3>
+          <p class="text-sm text-brand-light/70">Artista: Alan Guillin</p>
+          <p class="text-sm text-brand-light/70">Ruta 210, 24206, Guernica, Buenos Aires</p>
+          <p class="text-sm text-brand-light/70">Especialidades: Tradicional, Neotradicional, Black and Grey</p>
           <div class="flex space-x-4">
-            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Facebook</a>
             <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Instagram</a>
-            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">Twitter</a>
+            <a href="#" class="text-brand-light/70 hover:text-brand-gold transition-colors">WhatsApp</a>
           </div>
         </div>
 
@@ -57,7 +86,7 @@
 
       <!-- Bottom Bar -->
       <div class="mt-8 pt-8 border-t border-brand-charcoal/50 text-center text-xs text-brand-light/50">
-        <p>&copy; 2024 Barbería Royal. Todos los derechos reservados. | <a routerLink="/admin" class="hover:text-brand-gold transition-colors">Panel de Administración</a></p>
+        <p>&copy; 2024 EQUINOCCIO TATUAJES. Todos los derechos reservados. | <a routerLink="/admin" class="hover:text-brand-gold transition-colors">Panel de Administración</a></p>
       </div>
     </div>
   </footer>

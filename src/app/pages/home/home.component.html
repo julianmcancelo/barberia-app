@@ -1,15 +1,192 @@
-<main class="flex-grow">
-  <div class="relative h-[85vh] bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1599351431202-1846c8f4903a?q=80&w=2070&auto=format&fit=crop');">
-    <div class="absolute inset-0 bg-black/70 flex flex-col justify-center items-center text-center p-4">
-      <h1 class="text-5xl md:text-7xl font-serif-display text-white mb-4 leading-tight animate-fade-in-down">
-        El Arte del Afeitado Clásico
+<div class="bg-brand-charcoal min-h-screen">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-brand-charcoal via-brand-grey to-brand-charcoal py-32 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-5xl md:text-7xl font-serif-display text-brand-gold font-bold tracking-tight mb-8">
+        EQUINOCCIO TATUAJES
       </h1>
-      <p class="text-lg md:text-xl text-brand-light max-w-2xl mb-8 animate-fade-in-up">
-        Experimenta la tradición y el estilo en cada corte. Calidad y precisión para el hombre moderno.
-      </p>
-      <a mat-raised-button routerLink="/reservas" class="!bg-brand-gold !text-brand-charcoal !font-bold py-6 px-10 text-lg rounded-lg shadow-lg hover:!bg-amber-500 transform hover:scale-105 transition-all duration-300 animate-pulse cursor-pointer">
-        Reservar Turno
-      </a>
+      <h2 class="text-xl md:text-2xl text-brand-light font-light mb-8 tracking-wide uppercase">
+        Estudio de Tatuajes Profesional
+      </h2>
+      <div class="text-lg md:text-xl text-brand-light/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+        <div class="bg-brand-grey/30 p-8 rounded-lg mb-8">
+          <h3 class="text-2xl font-semibold text-brand-gold mb-4">Alan Guillin</h3>
+          <p class="text-lg mb-3">Artista Tatuador Profesional</p>
+          <div class="space-y-2 text-base">
+            <p><span class="text-brand-gold font-medium">Ubicación:</span> Ruta 210, 24206, Guernica, Buenos Aires</p>
+            <p><span class="text-brand-gold font-medium">Especialidades:</span> Tradicional, Neotradicional, Black and Grey</p>
+            <p><span class="text-brand-gold font-medium">Experiencia:</span> +5 años en el arte del tatuaje</p>
+          </div>
+        </div>
+        <p class="text-center text-lg">Agenda tu consulta y transforma tu idea en arte permanente</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <a routerLink="/reservas" class="btn-primary text-lg px-10 py-4 uppercase tracking-wider">Reservar</a>
+        <a routerLink="/servicios" class="btn-outline text-lg px-10 py-4 uppercase tracking-wider">Servicios</a>
+      </div>
     </div>
-  </div>
-</main>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-brand-grey">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-serif-display text-brand-gold mb-12 text-center">
+        PORTFOLIO
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-brand-charcoal rounded-lg overflow-hidden group">
+          <div class="h-64 bg-gradient-to-br from-brand-gold/20 to-brand-charcoal flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">🖤</div>
+              <p class="text-brand-gold font-semibold">Tradicional</p>
+              <p class="text-brand-light/60 text-sm">Estilo clásico americano</p>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-brand-gold font-semibold mb-2">Old School Eagle</h3>
+            <p class="text-brand-light/80 text-sm">Águila tradicional con banner, colores vibrantes y líneas definidas</p>
+          </div>
+        </div>
+        <div class="bg-brand-charcoal rounded-lg overflow-hidden group">
+          <div class="h-64 bg-gradient-to-br from-brand-gold/20 to-brand-charcoal flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">🌹</div>
+              <p class="text-brand-gold font-semibold">Neotradicional</p>
+              <p class="text-brand-light/60 text-sm">Evolución moderna</p>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-brand-gold font-semibold mb-2">Rosa Realista</h3>
+            <p class="text-brand-light/80 text-sm">Rosa con detalles hiperrealistas y sombreado dimensional</p>
+          </div>
+        </div>
+        <div class="bg-brand-charcoal rounded-lg overflow-hidden group">
+          <div class="h-64 bg-gradient-to-br from-brand-gold/20 to-brand-charcoal flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-4xl mb-2">🐺</div>
+              <p class="text-brand-gold font-semibold">Black & Grey</p>
+              <p class="text-brand-light/60 text-sm">Realismo en grises</p>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-brand-gold font-semibold mb-2">Retrato Lobo</h3>
+            <p class="text-brand-light/80 text-sm">Retrato realista con técnica de sombreado profesional</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <p class="text-brand-light/80 mb-6">¿Tienes una idea en mente? Trabajemos juntos para crear tu diseño único</p>
+        <a routerLink="/reservas" class="btn-primary text-lg px-10 py-4 uppercase tracking-wider">Ver Más Trabajos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-brand-charcoal">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-serif-display text-brand-gold mb-12 text-center">
+        PROCESO DE TATUAJE
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-brand-charcoal font-bold text-xl mx-auto mb-4">
+            1
+          </div>
+          <h3 class="text-brand-gold font-semibold mb-3">Consulta Inicial</h3>
+          <p class="text-brand-light/80 text-sm">Conversamos sobre tu idea, ubicación, tamaño y estilo preferido</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-brand-charcoal font-bold text-xl mx-auto mb-4">
+            2
+          </div>
+          <h3 class="text-brand-gold font-semibold mb-3">Diseño Personalizado</h3>
+          <p class="text-brand-light/80 text-sm">Creo un diseño único adaptado a tu anatomía y preferencias</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-brand-charcoal font-bold text-xl mx-auto mb-4">
+            3
+          </div>
+          <h3 class="text-brand-gold font-semibold mb-3">Sesión de Tatuaje</h3>
+          <p class="text-brand-light/80 text-sm">Realizamos el tatuaje con equipos esterilizados y máxima higiene</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-brand-charcoal font-bold text-xl mx-auto mb-4">
+            4
+          </div>
+          <h3 class="text-brand-gold font-semibold mb-3">Cuidados Post-Tatuaje</h3>
+          <p class="text-brand-light/80 text-sm">Te brindo instrucciones detalladas y seguimiento de cicatrización</p>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <p class="text-brand-light/90 mb-6">Cada paso está diseñado para garantizar tu comodidad y los mejores resultados</p>
+        <a routerLink="/reservas" class="btn-primary text-lg px-10 py-4 uppercase tracking-wider">Iniciar Consulta</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing & Info Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-brand-grey">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- Pricing -->
+        <div>
+          <h2 class="text-4xl md:text-5xl font-serif-display text-brand-gold mb-8">
+            PRECIOS
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-3">Consulta y Diseño</h3>
+              <p class="text-brand-light/90 mb-2">Sesión de diseño personalizado</p>
+              <p class="text-2xl font-bold text-brand-gold">$15.000</p>
+              <p class="text-brand-light/60 text-sm mt-2">Se descuenta del precio final del tatuaje</p>
+            </div>
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-3">Tatuaje por Hora</h3>
+              <p class="text-brand-light/90 mb-2">Precio por hora de trabajo</p>
+              <p class="text-2xl font-bold text-brand-gold">$25.000/hora</p>
+              <p class="text-brand-light/60 text-sm mt-2">Incluye materiales y cuidados post-tatuaje</p>
+            </div>
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-3">Retoque</h3>
+              <p class="text-brand-light/90 mb-2">Retoque gratuito dentro de los 30 días</p>
+              <p class="text-2xl font-bold text-brand-gold">Gratis</p>
+              <p class="text-brand-light/60 text-sm mt-2">Garantía de calidad incluida</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact & Location -->
+        <div>
+          <h2 class="text-4xl md:text-5xl font-serif-display text-brand-gold mb-8">
+            CONTACTO
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-4">Ubicación</h3>
+              <p class="text-brand-light/90 mb-2">📍 Ruta 210, 24206</p>
+              <p class="text-brand-light/90 mb-4">Guernica, Buenos Aires</p>
+              <div class="h-32 bg-brand-grey/50 rounded flex items-center justify-center">
+                <p class="text-brand-light/60">Mapa del estudio</p>
+              </div>
+            </div>
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-4">Horarios</h3>
+              <div class="space-y-2 text-brand-light/90">
+                <p><span class="text-brand-gold">Lunes a Viernes:</span> 14:00 - 20:00</p>
+                <p><span class="text-brand-gold">Sábados:</span> 10:00 - 18:00</p>
+                <p><span class="text-brand-gold">Domingos:</span> Cerrado</p>
+              </div>
+            </div>
+            <div class="bg-brand-charcoal p-6 rounded-lg border border-brand-gold/20">
+              <h3 class="text-brand-gold font-semibold text-xl mb-4">Reservas</h3>
+              <p class="text-brand-light/90 mb-4">Agenda tu cita con anticipación</p>
+              <a routerLink="/reservas" class="btn-primary w-full text-center block py-3 uppercase tracking-wider">
+                Reservar Ahora
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

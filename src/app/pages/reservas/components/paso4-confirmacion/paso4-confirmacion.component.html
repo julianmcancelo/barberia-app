@@ -1,0 +1,32 @@
+<h3 class="text-2xl font-bold text-brand-gold mb-6">Paso 4: Confirma tu Cita</h3>
+<div class="bg-brand-charcoal p-6 rounded-lg space-y-4">
+  <p><strong>Artista:</strong> {{ reservaState.tatuador?.nombre }}</p>
+  <p><strong>Servicios:</strong></p>
+  <ul class="list-disc list-inside pl-4">
+    <li *ngFor="let s of reservaState.servicios">{{ s.nombre }} ({{ s.duracion | duration }})</li>
+  </ul>
+  <p><strong>Fecha y Hora:</strong> {{ reservaState.hora?.hora }}</p>
+  <p><strong>Duración Total:</strong> {{ duracionTotal | duration }}</p>
+</div>
+<form [formGroup]="clienteForm" (ngSubmit)="confirmarReserva()" class="mt-6 space-y-4">
+  
+    <div>
+      <label for="nombre_completo" class="block text-sm font-medium text-brand-light/90">Nombre Completo</label>
+      <input type="text" id="nombre_completo" formControlName="nombre_completo" class="input-style w-full mt-1">
+    </div>
+  
+    <div>
+      <label for="email" class="block text-sm font-medium text-brand-light/90">Correo Electrónico</label>
+      <input type="email" id="email" formControlName="email" class="input-style w-full mt-1">
+    </div>
+  
+    <div>
+      <label for="whatsapp" class="block text-sm font-medium text-brand-light/90">N° de WhatsApp (Opcional)</label>
+      <input type="tel" id="whatsapp" formControlName="whatsapp" class="input-style w-full mt-1">
+    </div>
+  
+    <div class="flex justify-between mt-8">
+      <button type="button" (click)="navegacion.emit('anterior')" class="btn-secondary">Anterior</button>
+      <button (click)="confirmarReserva()" [disabled]="!reservaState.tatuador || !reservaState.hora || reservaState.servicios.length === 0" class="btn-primary w-full">Confirmar Cita</button>
+    </div>
+  </form>

@@ -1,0 +1,18 @@
+<h3 class="text-2xl font-bold text-brand-gold mb-6">Paso 3: Elige Fecha y Hora para tu Sesión de Tatuaje</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div>
+    <label for="fecha" class="block text-sm font-medium text-brand-light/90 mb-2">Selecciona una fecha *</label>
+    <input type="date" id="fecha" [value]="fechaSeleccionada" (change)="onDateChange($event)" class="input-style w-full" required>
+  </div>
+  <div>
+    <h4 class="text-lg font-semibold mb-2">Horarios Disponibles</h4>
+    <div *ngIf="horariosDisponibles.length > 0; else noHorarios" class="grid grid-cols-3 gap-2">
+      <button *ngFor="let hora of horariosDisponibles" (click)="seleccionarHora(hora)" [ngClass]="{'!bg-brand-gold !text-brand-charcoal': hora.hora === horaSeleccionada?.hora}" class="btn-outline">{{ hora.hora }}</button>
+    </div>
+    <ng-template #noHorarios><p class="text-brand-light/60">Selecciona una fecha y servicios para ver los horarios.</p></ng-template>
+  </div>
+</div>
+<div class="flex justify-between mt-8">
+  <button (click)="navegacion.emit('anterior')" class="btn-secondary">Anterior</button>
+  <button (click)="navegacion.emit('siguiente')" [disabled]="!horaSeleccionada || !fechaSeleccionada" class="btn-primary">Siguiente</button>
+</div>

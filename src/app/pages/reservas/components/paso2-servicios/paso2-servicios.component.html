@@ -1,0 +1,16 @@
+<h3 class="text-2xl font-bold text-brand-gold mb-2">Paso 2: Elige tus Servicios</h3>
+<p class="text-brand-light/80 mb-6">Artista: <span class="font-semibold text-brand-gold">{{ tatuadorSeleccionado?.nombre }}</span></p>
+<div class="space-y-4">
+  <div *ngFor="let servicio of servicios" (click)="toggleServicio(servicio)" [ngClass]="{'bg-brand-gold/30 border-brand-gold': estaSeleccionado(servicio), 'bg-brand-charcoal': !estaSeleccionado(servicio)}" class="p-4 rounded-lg cursor-pointer border-2 border-transparent flex justify-between items-center">
+    <div>
+      <p class="font-semibold">{{ servicio.nombre }}</p>
+      <p class="text-sm text-brand-light/70">{{ servicio.descripcion }} ({{ servicio.duracion | duration }})</p>
+    </div>
+    <span class="text-lg font-bold text-brand-gold">{{ servicio.precio }}</span>
+  </div>
+</div>
+<div class="mt-6 text-right font-bold text-xl">Duración Total: {{ duracionTotal | duration }}</div>
+<div class="flex justify-between mt-8">
+  <button (click)="navegacion.emit('anterior')" class="btn-secondary">Anterior</button>
+  <button (click)="navegacion.emit('siguiente')" [disabled]="serviciosElegidos.length === 0" class="btn-primary">Siguiente</button>
+</div>

@@ -1,0 +1,202 @@
+<div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-brand-light">
+  <div class="container mx-auto">
+    <div class="max-w-6xl mx-auto bg-brand-dark-blue p-8 rounded-lg shadow-lg">
+      
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold text-brand-gold">Gestión de Cupones</h1>
+        <button (click)="showAddForm()" class="bg-brand-gold text-brand-charcoal px-6 py-3 rounded-lg font-semibold hover:bg-brand-gold/90 transition-colors">
+          + Nuevo Cupón
+        </button>
+      </div>
+
+      <!-- Form Modal -->
+      <div *ngIf="showForm" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-brand-dark-blue p-8 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+          <h2 class="text-2xl font-bold text-brand-gold mb-6">
+            {{ editingId ? 'Editar Cupón' : 'Nuevo Cupón' }}
+          </h2>
+          
+          <form [formGroup]="cuponForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Código -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Código</label>
+                <input type="text" formControlName="codigo" 
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                       placeholder="DESCUENTO20">
+              </div>
+
+              <!-- Nombre -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Nombre</label>
+                <input type="text" formControlName="nombre" 
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                       placeholder="Descuento de Verano">
+              </div>
+            </div>
+
+            <!-- Descripción -->
+            <div>
+              <label class="block text-brand-light/80 text-sm font-medium mb-2">Descripción</label>
+              <textarea formControlName="descripcion" rows="3"
+                        class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                        placeholder="Descripción del cupón..."></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Tipo de Descuento -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Tipo de Descuento</label>
+                <select formControlName="tipo_descuento" 
+                        class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none">
+                  <option value="porcentaje">Porcentaje (%)</option>
+                  <option value="monto_fijo">Monto Fijo ($)</option>
+                </select>
+              </div>
+
+              <!-- Valor del Descuento -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Valor del Descuento</label>
+                <input type="number" formControlName="valor_descuento" min="0" step="0.01"
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                       placeholder="20">
+              </div>
+
+              <!-- Monto Mínimo -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Monto Mínimo</label>
+                <input type="number" formControlName="monto_minimo" min="0" step="0.01"
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                       placeholder="1000">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Fecha Inicio -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Fecha de Inicio</label>
+                <input type="date" formControlName="fecha_inicio" 
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none">
+              </div>
+
+              <!-- Fecha Expiración -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Fecha de Expiración</label>
+                <input type="date" formControlName="fecha_expiracion" 
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none">
+              </div>
+
+              <!-- Usos Máximos -->
+              <div>
+                <label class="block text-brand-light/80 text-sm font-medium mb-2">Usos Máximos</label>
+                <input type="number" formControlName="usos_maximos" min="1"
+                       class="w-full px-4 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 focus:border-brand-gold focus:outline-none"
+                       placeholder="Ilimitado">
+              </div>
+            </div>
+
+            <!-- Solo Primera Vez -->
+            <div class="flex items-center">
+              <input type="checkbox" formControlName="solo_primera_vez" id="solo_primera_vez"
+                     class="w-5 h-5 text-brand-gold bg-brand-charcoal border-brand-gold/20 rounded focus:ring-brand-gold">
+              <label for="solo_primera_vez" class="ml-3 text-brand-light/80">Solo para nuevos clientes</label>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-end space-x-4 pt-6">
+              <button type="button" (click)="cancelForm()" 
+                      class="px-6 py-3 bg-brand-charcoal text-brand-light rounded-lg border border-brand-gold/20 hover:bg-brand-gold/10 transition-colors">
+                Cancelar
+              </button>
+              <button type="submit" [disabled]="!cuponForm.valid"
+                      class="px-6 py-3 bg-brand-gold text-brand-charcoal rounded-lg font-semibold hover:bg-brand-gold/90 transition-colors disabled:opacity-50">
+                {{ editingId ? 'Actualizar' : 'Crear' }} Cupón
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="loading" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-gold"></div>
+        <p class="text-brand-light mt-4">Cargando cupones...</p>
+      </div>
+
+      <!-- Cupones Table -->
+      <div *ngIf="!loading" class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b border-brand-gold/20">
+              <th class="py-4 px-6 text-brand-gold font-semibold">Código</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Nombre</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Descuento</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Validez</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Usos</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Estado</th>
+              <th class="py-4 px-6 text-brand-gold font-semibold">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cupon of cupones" class="border-b border-brand-charcoal/50 hover:bg-brand-charcoal/30">
+              <td class="py-4 px-6">
+                <span class="font-mono bg-brand-charcoal px-3 py-1 rounded text-brand-gold">{{ cupon.codigo }}</span>
+              </td>
+              <td class="py-4 px-6 text-brand-light">{{ cupon.nombre }}</td>
+              <td class="py-4 px-6">
+                <span class="text-brand-gold font-semibold">{{ getDiscountText(cupon) }}</span>
+                <div class="text-xs text-brand-light/60">Min: ${{ cupon.monto_minimo }}</div>
+              </td>
+              <td class="py-4 px-6 text-sm">
+                <div class="text-brand-light/80">{{ cupon.fecha_inicio | date:'dd/MM/yyyy' }}</div>
+                <div class="text-brand-light/60">{{ cupon.fecha_expiracion | date:'dd/MM/yyyy' }}</div>
+              </td>
+              <td class="py-4 px-6 text-sm">
+                <div class="text-brand-light">{{ cupon.usos_actuales }} / {{ cupon.usos_maximos || '∞' }}</div>
+              </td>
+              <td class="py-4 px-6">
+                <span *ngIf="cupon.activo && !isExpired(cupon) && !isExhausted(cupon)" 
+                      class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Activo</span>
+                <span *ngIf="isExpired(cupon)" 
+                      class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs">Expirado</span>
+                <span *ngIf="isExhausted(cupon)" 
+                      class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs">Agotado</span>
+                <span *ngIf="!cupon.activo" 
+                      class="px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full text-xs">Inactivo</span>
+              </td>
+              <td class="py-4 px-6">
+                <div class="flex space-x-2">
+                  <button (click)="editCupon(cupon)" 
+                          class="text-brand-gold hover:text-brand-gold/80 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                  </button>
+                  <button (click)="deleteCupon(cupon.id!)" 
+                          class="text-red-400 hover:text-red-300 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div *ngIf="cupones.length === 0" class="text-center py-12">
+          <svg class="w-16 h-16 text-brand-gold/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 class="text-xl font-semibold text-brand-light/70 mb-2">No hay cupones creados</h3>
+          <p class="text-brand-light/50 mb-4">Crea tu primer cupón de descuento para atraer más clientes.</p>
+          <button (click)="showAddForm()" class="bg-brand-gold text-brand-charcoal px-6 py-3 rounded-lg font-semibold hover:bg-brand-gold/90 transition-colors">
+            Crear Primer Cupón
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,53 +1,63 @@
 <div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-brand-light">
   <div class="max-w-7xl mx-auto">
     <div class="text-center">
-      <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Ponte en Contacto</h2>
+      <h1 class="text-4xl font-bold text-brand-gold">FAQ's - EQUINOCCIO TATUAJES</h1>
       <p class="mt-4 max-w-3xl mx-auto text-xl text-brand-light/80">
-        ¿Tienes alguna pregunta? Envíanos un mensaje o visítanos.
+        Preguntas frecuentes sobre nuestros servicios y el proceso de tatuaje
       </p>
     </div>
 
     <div class="mt-16 grid md:grid-cols-2 gap-12">
-      <!-- Contact Information -->
+      <!-- Artist Information -->
       <div class="bg-brand-grey p-8 rounded-lg shadow-lg">
-        <h3 class="text-3xl font-serif-display text-brand-gold mb-6">Información de Contacto</h3>
-        <div class="space-y-4 text-lg">
-          <p class="flex items-start">
-            <span class="text-brand-gold mr-3 mt-1">📍</span>
-            <span>Calle Falsa 123, Springfield, USA</span>
-          </p>
-          <p class="flex items-start">
-            <span class="text-brand-gold mr-3 mt-1">📞</span>
-            <span>(555) 123-4567</span>
-          </p>
-          <p class="flex items-start">
-            <span class="text-brand-gold mr-3 mt-1">✉️</span>
-            <span>contacto&#64;barberiaroyal.com</span>
-          </p>
+        <h3 class="text-3xl font-serif-display text-brand-gold mb-6">Información del Artista</h3>
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-xl font-semibold text-brand-gold mb-3">Alan Guillin</h4>
+            <p class="text-brand-light/90 mb-2">Artista Tatuador Profesional</p>
+          </div>
+          <div class="space-y-3 text-lg">
+            <p class="flex items-start">
+              <span class="text-brand-gold mr-3 mt-1">📍</span>
+              <span>Ruta 210, 24206, Guernica, Buenos Aires</span>
+            </p>
+            <p class="flex items-start">
+              <span class="text-brand-gold mr-3 mt-1">🎨</span>
+              <span>Especialidades: Tradicional, Neotradicional, Black and Grey</span>
+            </p>
+            <p class="flex items-start">
+              <span class="text-brand-gold mr-3 mt-1">⭐</span>
+              <span>Experiencia: +5 años en el arte del tatuaje</span>
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Contact Form -->
+      <!-- FAQ Section -->
       <div class="bg-brand-grey p-8 rounded-lg shadow-lg">
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class="grid grid-cols-1 gap-y-6">
-            <div>
-              <label for="name" class="sr-only">Nombre</label>
-              <input type="text" formControlName="name" id="name" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Nombre Completo">
-            </div>
-            <div>
-              <label for="email" class="sr-only">Email</label>
-              <input id="email" formControlName="email" type="email" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Correo Electrónico">
-            </div>
-            <div>
-              <label for="message" class="sr-only">Mensaje</label>
-              <textarea id="message" formControlName="message" rows="4" class="bg-brand-charcoal border-brand-grey text-white text-lg rounded-md block w-full p-3 focus:ring-brand-gold focus:border-brand-gold" placeholder="Tu Mensaje"></textarea>
-            </div>
-            <div>
-              <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-brand-charcoal bg-brand-gold hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold transition-colors duration-300">Enviar Mensaje</button>
-            </div>
+        <h3 class="text-3xl font-serif-display text-brand-gold mb-6">Preguntas Frecuentes</h3>
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-lg font-semibold text-brand-gold mb-2">¿Cuánto tiempo tarda en sanar un tatuaje?</h4>
+            <p class="text-brand-light/90">La cicatrización completa toma entre 2-4 semanas. Los primeros 7-10 días son los más críticos para el cuidado.</p>
           </div>
-        </form>
+          <div>
+            <h4 class="text-lg font-semibold text-brand-gold mb-2">¿Qué incluye el precio del tatuaje?</h4>
+            <p class="text-brand-light/90">El precio incluye el diseño personalizado, materiales de calidad premium, y las instrucciones de cuidado post-tatuaje.</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-brand-gold mb-2">¿Ofrecen garantía en los tatuajes?</h4>
+            <p class="text-brand-light/90">Sí, ofrecemos retoque gratuito dentro de los primeros 30 días si es necesario por cicatrización.</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-brand-gold mb-2">¿Cómo reservo una cita?</h4>
+            <p class="text-brand-light/90">Puedes reservar a través de nuestro sistema online o contactándome directamente por mensaje.</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-brand-gold mb-2">¿Qué debo traer el día de la cita?</h4>
+            <p class="text-brand-light/90">Trae tu DNI, come algo antes de venir, y usa ropa cómoda que permita acceso al área a tatuar.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

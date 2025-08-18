@@ -1,0 +1,90 @@
+// Admin Cupones Component Styles
+.bg-brand-charcoal {
+  background-color: var(--brand-charcoal, #2c2c2c);
+}
+
+.bg-brand-dark-blue {
+  background-color: var(--brand-dark-blue, #1a1a2e);
+}
+
+.text-brand-gold {
+  color: var(--brand-gold, #c0a062);
+}
+
+.text-brand-light {
+  color: var(--brand-light, #f5f5f5);
+}
+
+.border-brand-gold {
+  border-color: var(--brand-gold, #c0a062);
+}
+
+.bg-brand-gold {
+  background-color: var(--brand-gold, #c0a062);
+}
+
+// Table styling
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  border-bottom: 1px solid rgba(192, 160, 98, 0.2);
+}
+
+tr:hover {
+  background-color: rgba(44, 44, 44, 0.3);
+}
+
+// Form styling
+input, select, textarea {
+  transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 2px rgba(192, 160, 98, 0.2);
+}
+
+// Status badges
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+// Animation for loading spinner
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+// Modal backdrop
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  table {
+    font-size: 0.875rem;
+  }
+  
+  .modal-content {
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

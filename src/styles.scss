@@ -3,30 +3,30 @@
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Lato:wght@300;400&display=swap');
 
-// Include the common styles for Angular Material.
-@include mat.core();
-
-// Define a custom theme palette
-$barberia-primary: mat.define-palette(mat.$grey-palette, 900, 800, 900);
-$barberia-accent: mat.define-palette(mat.$amber-palette, A400, A200, A700);
-$barberia-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object
-$barberia-theme: mat.define-dark-theme((
-  color: (
-    primary: $barberia-primary,
-    accent: $barberia-accent,
-    warn: $barberia-warn,
-  )
-));
-
-// Apply the custom theme
-@include mat.all-component-themes($barberia-theme);
-
 // Tailwind Directives
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Include the common styles for Angular Material.
+@include mat.core();
+
+// Define a custom theme palette
+$tatuajes-primary: mat.define-palette(mat.$grey-palette, 900, 800, 900);
+$tatuajes-accent: mat.define-palette(mat.$amber-palette, A400, A200, A700);
+$tatuajes-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$tatuajes-theme: mat.define-dark-theme((
+  color: (
+    primary: $tatuajes-primary,
+    accent: $tatuajes-accent,
+    warn: $tatuajes-warn,
+  )
+));
+
+// Apply the custom theme
+@include mat.all-component-themes($tatuajes-theme);
 
 @layer components {
   .btn-primary {
@@ -42,6 +42,29 @@ $barberia-theme: mat.define-dark-theme((
     @apply mt-1 block w-full bg-brand-charcoal border-transparent rounded-md shadow-sm py-2 px-3 text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent sm:text-sm;
   }
 }
+
+// Brand colors - Iris Studio inspired
+:root {
+  --brand-charcoal: #1a1a1a;
+  --brand-grey: #2a2a2a;
+  --brand-gold: #c9a96e;
+  --brand-light: #f8f8f8;
+  --brand-accent: #8b7355;
+}
+
+// Tailwind custom classes
+.brand-charcoal { color: var(--brand-charcoal); }
+.bg-brand-charcoal { background-color: var(--brand-charcoal); }
+.brand-grey { color: var(--brand-grey); }
+.bg-brand-grey { background-color: var(--brand-grey); }
+.brand-gold { color: var(--brand-gold); }
+.bg-brand-gold { background-color: var(--brand-gold); }
+.brand-light { color: var(--brand-light); }
+.bg-brand-light { background-color: var(--brand-light); }
+.text-brand-charcoal { color: var(--brand-charcoal); }
+.text-brand-grey { color: var(--brand-grey); }
+.text-brand-gold { color: var(--brand-gold); }
+.text-brand-light { color: var(--brand-light); }
 
 // Base body styles
 html, body {

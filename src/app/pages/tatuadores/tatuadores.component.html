@@ -1,0 +1,76 @@
+<div class="bg-brand-charcoal min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+  <div class="container mx-auto">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-brand-gold mb-6">Nuestros Artistas</h1>
+      <p class="text-xl text-brand-light/80 max-w-3xl mx-auto">
+        Conoce a nuestro talentoso equipo de tatuadores profesionales. Cada uno con su estilo único y años de experiencia en el arte del tatuaje.
+      </p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-12">
+      <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-gold"></div>
+      <p class="text-brand-light mt-4">Cargando artistas...</p>
+    </div>
+
+    <!-- Tatuadores Grid -->
+    <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let tatuador of tatuadores" 
+           class="bg-brand-dark-blue rounded-xl overflow-hidden shadow-2xl hover:shadow-brand-gold/20 transition-all duration-300 hover:scale-105">
+        
+        <!-- Profile Image Placeholder -->
+        <div class="h-64 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center">
+          <div class="w-24 h-24 bg-brand-gold/30 rounded-full flex items-center justify-center">
+            <svg class="w-12 h-12 text-brand-gold" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-brand-gold mb-2">{{ tatuador.nombre }}</h3>
+          <div class="text-sm text-brand-light/80 mb-2">
+            <span class="font-medium">Especialidad:</span> {{ tatuador.especialidad }}
+          </div>
+          <p class="text-sm text-brand-light/70 mb-4 line-clamp-3">
+            {{ tatuador.descripcion || 'Tatuador profesional con amplia experiencia.' }}
+          </p>
+          <div class="text-xs text-brand-light/60 space-y-1">
+            <div *ngIf="tatuador.telefono">📞 {{ tatuador.telefono }}</div>
+            <div *ngIf="tatuador.email">✉️ {{ tatuador.email }}</div>
+            <div *ngIf="tatuador.instagram">📷 {{ tatuador.instagram }}</div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="mt-6 pt-4 border-t border-brand-gold/20">
+            <button (click)="reservarConTatuador(tatuador)" class="w-full bg-brand-gold text-brand-charcoal font-semibold py-3 px-6 rounded-lg hover:bg-brand-gold/90 transition-colors duration-200">
+              Reservar con {{ tatuador.nombre }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && tatuadores.length === 0" class="text-center py-16">
+      <svg class="w-16 h-16 text-brand-gold/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+      </svg>
+      <h3 class="text-xl font-semibold text-brand-light/70 mb-2">No hay artistas disponibles</h3>
+      <p class="text-brand-light/50">Pronto tendremos más información sobre nuestros tatuadores.</p>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16 bg-brand-dark-blue rounded-xl p-8">
+      <h2 class="text-3xl font-bold text-brand-gold mb-4">¿Listo para tu próximo tatuaje?</h2>
+      <p class="text-brand-light/80 mb-6 max-w-2xl mx-auto">
+        Nuestros artistas están esperando para crear algo único contigo. Reserva tu cita y comencemos a trabajar en tu próxima obra de arte.
+      </p>
+      <button (click)="reservarConTatuador(null)" class="bg-brand-gold text-brand-charcoal font-bold py-4 px-8 rounded-lg text-lg hover:bg-brand-gold/90 transition-colors duration-200">
+        Hacer una Reserva
+      </button>
+    </div>
+  </div>
+</div>

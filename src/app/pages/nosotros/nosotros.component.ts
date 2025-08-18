@@ -9,21 +9,21 @@ import { NgFor } from '@angular/common';
   styleUrl: './nosotros.component.scss'
 })
 export class NosotrosComponent {
-  barberos = [
+  tatuadores = [
     {
-      nombre: 'Alejandro Gómez',
-      especialidad: 'Maestro Barbero y Fundador',
-      imagen: 'https://images.unsplash.com/photo-1559582823-7544503544c1?q=80&w=1887&auto=format&fit=crop'
+      nombre: 'Elena Vargas',
+      especialidad: 'Artista del Realismo y Fundadora',
+      imagen: 'https://images.unsplash.com/photo-1595085610892-38f35b5ee483?q=80&w=1887&auto=format&fit=crop'
     },
     {
-      nombre: 'Carlos Mendoza',
-      especialidad: 'Especialista en Cortes Modernos',
-      imagen: 'https://images.unsplash.com/photo-1532710093739-94705e6aa483?q=80&w=1887&auto=format&fit=crop'
+      nombre: 'Marco Reyes',
+      especialidad: 'Especialista en Blackwork y Geométrico',
+      imagen: 'https://images.unsplash.com/photo-1588851280205-587b8134f4e1?q=80&w=1887&auto=format&fit=crop'
     },
     {
-      nombre: 'Javier Ríos',
-      especialidad: 'Experto en Afeitado Clásico',
-      imagen: 'https://images.unsplash.com/photo-1622288432453-53145233a738?q=80&w=1887&auto=format&fit=crop'
+      nombre: 'Sofia Castillo',
+      especialidad: 'Experta en Acuarela y Neotradicional',
+      imagen: 'https://images.unsplash.com/photo-1614981273937-73406725a3f2?q=80&w=1887&auto=format&fit=crop'
     }
   ];
 }
