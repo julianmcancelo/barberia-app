@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "vercel-build": "ng build --configuration production",
     "seed": "node --require dotenv/config ./scripts/seed.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

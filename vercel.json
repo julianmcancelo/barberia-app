@@ -1,22 +1,7 @@
 {
-  "builds": [
-    {
-      "src": "src/main.ts",
-      "use": "@vercel/angular"
-    },
-    {
-      "src": "api/**/*.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/barberia-app",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

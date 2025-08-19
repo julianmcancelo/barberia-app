@@ -1,0 +1,12 @@
+node_modules
+.angular
+.env
+*.log
+src
+!dist
+php/db.php
+database/
+*.sql
+.vscode
+.editorconfig
+.gitignore
