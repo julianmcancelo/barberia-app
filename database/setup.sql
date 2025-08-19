@@ -58,10 +58,10 @@ CREATE TABLE reservas (
 
 -- Insert initial data
 INSERT INTO tatuadores (nombre, especialidad, descripcion, telefono, email) VALUES
-('Carlos Mendoza', 'Realismo', 'Especialista en tatuajes realistas y retratos. 15 años de experiencia.', '+54 11 1234-5678', 'carlos@barberia.com'),
-('Ana García', 'Traditional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@barberia.com'),
-('Miguel Torres', 'Blackwork', 'Maestro del blackwork y geometric. Diseños minimalistas y elegantes.', '+54 11 3456-7890', 'miguel@barberia.com'),
-('Sofía Ruiz', 'Acuarela', 'Artista especializada en tatuajes estilo acuarela y diseños delicados.', '+54 11 4567-8901', 'sofia@barberia.com');
+('Carlos Mendoza', 'Realismo', 'Especialista en tatuajes realistas y retratos. 15 años de experiencia.', '+54 11 1234-5678', 'carlos@equinocciostudio.com'),
+('Ana García', 'Traditional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@equinocciostudio.com'),
+('Miguel Torres', 'Blackwork', 'Maestro del blackwork y geometric. Diseños minimalistas y elegantes.', '+54 11 3456-7890', 'miguel@equinocciostudio.com'),
+('Sofía Ruiz', 'Acuarela', 'Artista especializada en tatuajes estilo acuarela y diseños delicados.', '+54 11 4567-8901', 'sofia@equinocciostudio.com');
 
 INSERT INTO servicios (nombre, descripcion, duracion, precio) VALUES
 ('Tatuaje Pequeño', 'Tatuajes de hasta 5cm. Ideal para primeros tatuajes o diseños minimalistas.', 60, 8000.00),

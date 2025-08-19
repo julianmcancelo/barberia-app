@@ -3,10 +3,10 @@
 
 -- Insert sample tattoo artists
 INSERT INTO tatuadores (nombre, especialidad, descripcion, telefono, email, activo) VALUES
-('Carlos Mendoza', 'Realismo', 'Especialista en tatuajes realistas y retratos. 10 años de experiencia.', '+54 11 1234-5678', 'carlos@barberia.com', TRUE),
-('Ana Rodriguez', 'Traditional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@barberia.com', TRUE),
-('Miguel Santos', 'Blackwork', 'Maestro del blackwork y dotwork. Diseños geométricos y tribales.', '+54 11 3456-7890', 'miguel@barberia.com', TRUE),
-('Sofia Martinez', 'Acuarela', 'Artista especializada en tatuajes estilo acuarela y minimalistas.', '+54 11 4567-8901', 'sofia@barberia.com', TRUE);
+('Carlos Mendoza', 'Realismo', 'Especialista en tatuajes realistas y retratos. 10 años de experiencia.', '+54 11 1234-5678', 'carlos@equinocciostudio.com', TRUE),
+('Ana Rodriguez', 'Traditional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@equinocciostudio.com', TRUE),
+('Miguel Santos', 'Blackwork', 'Maestro del blackwork y dotwork. Diseños geométricos y tribales.', '+54 11 3456-7890', 'miguel@equinocciostudio.com', TRUE),
+('Sofia Martinez', 'Acuarela', 'Artista especializada en tatuajes estilo acuarela y minimalistas.', '+54 11 4567-8901', 'sofia@equinocciostudio.com', TRUE);
 
 -- Insert sample services
 INSERT INTO servicios (nombre, descripcion, duracion, precio, activo) VALUES

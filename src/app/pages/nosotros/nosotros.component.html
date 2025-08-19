@@ -4,26 +4,133 @@
     <div class="text-center mb-20">
       <h2 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Nuestra Historia</h2>
       <p class="mt-4 max-w-3xl mx-auto text-xl text-brand-light/80">
-        Fundada en 2010, Tatuajes Royal nació de la pasión por el arte corporal y el deseo de crear un espacio donde la creatividad y la piel se encuentran para contar historias.
+        Fundada en 2010, EQUINOCCIO STUDIO nació de la pasión por el arte corporal y el deseo de crear un espacio donde la creatividad y la piel se encuentran para contar historias.
       </p>
     </div>
 
     <!-- Section: Our Team -->
     <div>
-      <div class="text-center">
+      <div class="text-center mb-16">
         <h3 class="text-4xl font-serif-display text-brand-gold font-bold tracking-tight sm:text-5xl">Nuestro Equipo</h3>
         <p class="mt-4 max-w-3xl mx-auto text-xl text-brand-light/80">
           Artistas de la tinta y la aguja, dedicados a la creación de obras maestras.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Team Member Card (will be repeated with *ngFor) -->
-        <div *ngFor="let tatuador of tatuadores" class="bg-brand-grey p-8 rounded-lg shadow-lg text-center transform hover:scale-105 hover:shadow-2xl hover:shadow-brand-gold/20 transition-all duration-300">
-          <img class="mx-auto h-48 w-48 rounded-full object-cover" [src]="tatuador.imagen" [alt]="'Foto de ' + tatuador.nombre">
-          <div class="mt-6">
-            <h4 class="text-2xl font-serif-display text-brand-gold">{{ tatuador.nombre }}</h4>
-            <p class="text-lg text-brand-light/90">{{ tatuador.especialidad }}</p>
+      <!-- Team Members Grid -->
+      <div class="space-y-16">
+        <div *ngFor="let tatuador of tatuadores" class="bg-brand-grey rounded-2xl overflow-hidden shadow-2xl">
+          
+          <!-- Artist Header -->
+          <div class="relative">
+            <div class="bg-gradient-to-r from-brand-gold/20 to-brand-charcoal p-8">
+              <div class="flex flex-col md:flex-row items-center gap-8">
+                <img class="w-32 h-32 rounded-full object-cover border-4 border-brand-gold shadow-lg" 
+                     [src]="tatuador.imagen" [alt]="'Foto de ' + tatuador.nombre">
+                <div class="text-center md:text-left flex-1">
+                  <h4 class="text-3xl font-serif-display text-brand-gold mb-2">{{ tatuador.nombre }}</h4>
+                  <p class="text-xl text-brand-light/90 mb-1">{{ tatuador.especialidad }}</p>
+                  <p class="text-lg text-brand-gold/80 mb-4">{{ tatuador.rol }}</p>
+                  <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="bg-brand-charcoal text-brand-gold px-3 py-1 rounded-full text-sm">
+                      {{ tatuador.experiencia }} de experiencia
+                    </span>
+                    <button *ngIf="tatuador.instagram" (click)="openInstagram(tatuador.instagram!)" 
+                            class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm hover:shadow-lg transition-all">
+                      {{ tatuador.instagram }}
+                    </button>
+                  </div>
+                </div>
+                <button (click)="selectArtist(tatuador)" 
+                        class="btn-primary px-6 py-3 text-sm uppercase tracking-wider">
+                  {{ selectedArtist?.id === tatuador.id ? 'Cerrar' : 'Ver Más' }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expanded Artist Details -->
+          <div *ngIf="selectedArtist?.id === tatuador.id" class="p-8 bg-brand-charcoal">
+            
+            <!-- Biography Section -->
+            <div class="mb-12">
+              <h5 class="text-2xl font-serif-display text-brand-gold mb-4">Biografía</h5>
+              <p class="text-brand-light/90 leading-relaxed text-lg">{{ tatuador.biografia }}</p>
+            </div>
+
+            <!-- Certifications -->
+            <div class="mb-12">
+              <h5 class="text-2xl font-serif-display text-brand-gold mb-4">Certificaciones y Formación</h5>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div *ngFor="let cert of tatuador.certificaciones" 
+                     class="bg-brand-grey p-4 rounded-lg border border-brand-gold/20">
+                  <p class="text-brand-light/90 text-center">{{ cert }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instagram Feed -->
+            <div class="mb-12">
+              <h5 class="text-2xl font-serif-display text-brand-gold mb-4">Síguenos en Instagram</h5>
+              
+              <div *ngIf="tatuador.instagram" class="bg-brand-grey rounded-lg p-6 text-center">
+                <div class="mb-4">
+                  <h6 class="text-lg text-brand-light mb-2">{{ '@' + tatuador.instagram.replace('@', '') }}</h6>
+                  <p class="text-brand-light/70 text-sm mb-4">Mira nuestros últimos trabajos</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                  <div *ngFor="let i of [1,2,3,4,5,6]" 
+                       class="aspect-square bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform"
+                       (click)="openInstagram(tatuador.instagram!)">
+                    <img [src]="'https://picsum.photos/300/300?random=' + (i + (tatuador.id || 0))" 
+                         [alt]="'Trabajo de ' + tatuador.nombre" 
+                         class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                  </div>
+                </div>
+                
+                <button 
+                  (click)="openInstagram(tatuador.instagram!)"
+                  class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all flex items-center gap-2 mx-auto">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  Ver en Instagram
+                </button>
+              </div>
+            </div>
+
+            <!-- Portfolio Gallery -->
+            <div class="mb-8">
+              <h5 class="text-2xl font-serif-display text-brand-gold mb-4">Portfolio Destacado</h5>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div *ngFor="let trabajo of tatuador.portfolio" 
+                     class="bg-brand-grey rounded-lg overflow-hidden group hover:shadow-xl transition-all">
+                  <div class="relative">
+                    <img [src]="trabajo.imagen" [alt]="trabajo.titulo" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <div class="text-center">
+                        <p class="text-white font-semibold text-lg">{{ trabajo.titulo }}</p>
+                        <p class="text-brand-gold">{{ trabajo.estilo }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <h6 class="text-brand-gold font-semibold">{{ trabajo.titulo }}</h6>
+                    <p class="text-brand-light/70 text-sm">{{ trabajo.estilo }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Button -->
+            <div class="text-center">
+              <a routerLink="/reservas" 
+                 class="btn-primary px-8 py-3 text-lg uppercase tracking-wider inline-block">
+                Reservar con {{ tatuador.nombre }}
+              </a>
+            </div>
           </div>
         </div>
       </div>

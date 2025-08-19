@@ -11,34 +11,34 @@ import { NgFor } from '@angular/common';
 export class ServiciosComponent {
   servicios = [
     {
-      nombre: 'Corte de Cabello Clásico',
-      descripcion: 'Un corte de cabello tradicional adaptado a tu estilo, utilizando técnicas de tijera y máquina.',
-      precio: '$25'
+      nombre: 'Tatuaje Tradicional',
+      descripcion: 'Diseños clásicos con líneas definidas y colores vibrantes en el estilo tradicional americano.',
+      precio: '$25.000/hora'
     },
     {
-      nombre: 'Afeitado de Barba con Navaja',
-      descripcion: 'Un afeitado de lujo con toallas calientes, espuma cremosa y un acabado suave con navaja.',
-      precio: '$30'
+      nombre: 'Tatuaje Realista',
+      descripcion: 'Retratos y diseños hiperrealistas con técnicas avanzadas de sombreado y detalle.',
+      precio: '$30.000/hora'
     },
     {
-      nombre: 'Diseño y Perfilado de Barba',
-      descripcion: 'Dale forma y define tu barba para un look impecable y bien cuidado.',
-      precio: '$20'
+      nombre: 'Blackwork',
+      descripcion: 'Diseños en negro sólido, geométricos y minimalistas con gran impacto visual.',
+      precio: '$20.000/hora'
     },
     {
-      nombre: 'Tratamiento Facial',
-      descripcion: 'Relájate con una limpieza facial profunda, exfoliación y mascarilla hidratante.',
-      precio: '$40'
+      nombre: 'Tatuaje Acuarela',
+      descripcion: 'Diseños delicados con efectos de acuarela y colores difuminados únicos.',
+      precio: '$28.000/hora'
     },
     {
-      nombre: 'Corte y Barba (Paquete)',
-      descripcion: 'El paquete completo para el caballero moderno: corte de cabello y afeitado o perfilado de barba.',
-      precio: '$50'
+      nombre: 'Diseño Personalizado',
+      descripcion: 'Consulta y creación de diseño único adaptado a tus ideas y anatomía.',
+      precio: '$15.000'
     },
     {
-      nombre: 'Tinte de Cabello o Barba',
-      descripcion: 'Cubre las canas o cambia tu look con un tinte de color natural y duradero.',
-      precio: '$35'
+      nombre: 'Retoque',
+      descripcion: 'Retoque gratuito dentro de los 30 días para garantizar la calidad del trabajo.',
+      precio: 'Gratis'
     }
   ];
 }

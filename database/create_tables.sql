@@ -95,10 +95,10 @@ CREATE INDEX IF NOT EXISTS idx_cupones_usados_email ON cupones_usados(cliente_em
 
 -- Datos de ejemplo para tatuadores
 INSERT IGNORE INTO tatuadores (id, nombre, especialidad, descripcion, telefono, email, instagram, activo) VALUES
-(1, 'Carlos Mendez', 'Realismo', 'Especialista en tatuajes realistas y retratos. Más de 10 años de experiencia.', '+54 11 1234-5678', 'carlos@barberia.com', '@carlos_tattoo', TRUE),
-(2, 'Ana Rodriguez', 'Tradicional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@barberia.com', '@ana_traditional', TRUE),
-(3, 'Miguel Santos', 'Geométrico', 'Diseños geométricos y minimalistas. Precisión y arte en cada línea.', '+54 11 3456-7890', 'miguel@barberia.com', '@miguel_geometric', TRUE),
-(4, 'Sofia Gutierrez', 'Acuarela', 'Tatuajes estilo acuarela y arte abstracto. Colores vibrantes y técnicas innovadoras.', '+54 11 4567-8901', 'sofia@barberia.com', '@sofia_watercolor', TRUE);
+(1, 'Carlos Mendez', 'Realismo', 'Especialista en tatuajes realistas y retratos. Más de 10 años de experiencia.', '+54 11 1234-5678', 'carlos@equinocciostudio.com', '@carlos_tattoo', TRUE),
+(2, 'Ana Rodriguez', 'Tradicional', 'Experta en tatuajes tradicionales y old school. Estilo único y colorido.', '+54 11 2345-6789', 'ana@equinocciostudio.com', '@ana_traditional', TRUE),
+(3, 'Miguel Santos', 'Geométrico', 'Diseños geométricos y minimalistas. Precisión y arte en cada línea.', '+54 11 3456-7890', 'miguel@equinocciostudio.com', '@miguel_geometric', TRUE),
+(4, 'Sofia Gutierrez', 'Acuarela', 'Tatuajes estilo acuarela y arte abstracto. Colores vibrantes y técnicas innovadoras.', '+54 11 4567-8901', 'sofia@equinocciostudio.com', '@sofia_watercolor', TRUE);
 
 -- Datos de ejemplo para servicios
 INSERT IGNORE INTO servicios (id, nombre, descripcion, precio, duracion, activo) VALUES

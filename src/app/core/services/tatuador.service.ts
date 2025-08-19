@@ -11,6 +11,8 @@ export interface Tatuador {
   telefono?: string;
   email?: string;
   instagram?: string;
+  experiencia?: string;
+  imagen?: string;
   activo?: boolean;
   created_at?: string;
   updated_at?: string;

@@ -6,7 +6,7 @@
       "especialidad": "Realismo",
       "descripcion": "Especialista en tatuajes realistas y retratos. 15 años de experiencia.",
       "telefono": "+54 11 1234-5678",
-      "email": "carlos@barberia.com"
+      "email": "carlos@equinocciostudio.com"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "especialidad": "Traditional",
       "descripcion": "Experta en tatuajes tradicionales y old school. Estilo único y colorido.",
       "telefono": "+54 11 2345-6789",
-      "email": "ana@barberia.com"
+      "email": "ana@equinocciostudio.com"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "especialidad": "Blackwork",
       "descripcion": "Maestro del blackwork y geometric. Diseños minimalistas y elegantes.",
       "telefono": "+54 11 3456-7890",
-      "email": "miguel@barberia.com"
+      "email": "miguel@equinocciostudio.com"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "especialidad": "Acuarela",
       "descripcion": "Artista especializada en tatuajes estilo acuarela y diseños delicados.",
       "telefono": "+54 11 4567-8901",
-      "email": "sofia@barberia.com"
+      "email": "sofia@equinocciostudio.com"
     }
   ]
 }
